@@ -1,0 +1,161 @@
+
+.container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.heading {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.movieGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.viewDetailsBtn {
+  padding: 10px 20px;
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.viewDetailsBtn:hover {
+  background-color: #005bb5;
+}
+
+/* MovieCard Styles */
+.movieCard {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.movieCard {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.browseButton {
+  display: block;
+  width: 100%;
+  padding: 10px 20px;
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.browseButton:hover {
+  background-color: #005bb5;
+}
+
+.movieCard h2 {
+  margin: 10px 0;
+}
+
+.movieCard p {
+  margin-bottom: 10px;
+}
+
+/* GenreCard Styles */
+.genreCard {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.genreCard h2 {
+  margin: 10px 0;
+}
+
+/* DirectorCard Styles */
+.directorCard {
+  padding: 15px;
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.directorCard h3 {
+  margin-bottom: 10px;
+}
+
+.directorCard p {
+  margin-bottom: 15px;
+}
+
+/* Navbar Styles */
+.navbar {
+  background-color: #333;
+  padding: 10px 0;
+}
+
+.navList {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navItem {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+  font-size: 18px;
+}
+
+.navItem:hover {
+  text-decoration: underline;
+}
+
+.errorPage {
+  text-align: center;
+  padding: 50px;
+}
+
+.errorHeading {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #ff4d4d;
+  margin-bottom: 20px;
+}
+
+.errorMessage {
+  font-size: 1.25rem;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.goHomeButton {
+  padding: 10px 20px;
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
+}
+
+.goHomeButton:hover {
+  background-color: #005bb5;
+}
