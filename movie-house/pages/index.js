@@ -3,9 +3,8 @@ import { getAllMovies } from '@/helper/utils';
 import Head from 'next/head';
 import MovieCard from '../components/MovieCard';
 import styles from '../styles/MovieHouse.module.css';
-import { notFound } from 'next/navigation';
 
-const Home = ({ movies }) => {
+const Home = ({ trendingMovies }) => {
   const router = useRouter();
 
   return (
@@ -16,7 +15,7 @@ const Home = ({ movies }) => {
       <div className={styles.container}>
         <h1 className={styles.heading}>Trending Movies</h1>
         <div className={styles.movieGrid}>
-          {movies.map(movie => (
+          {trendingMovies.map(movie => (
             <MovieCard key={movie.id} movie={movie} />
           ))}
         </div>
@@ -28,8 +27,9 @@ const Home = ({ movies }) => {
 
 export async function getStaticProps() {
   const movies = await getAllMovies();
+  const trendingMovies = movies.filter(movie => movie.rating > 8) // Condition for being trending
 
-  if(!movies)
+  if(!trendingMovies)
   {
     return {
       notFound: true,
@@ -38,7 +38,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      movies,
+      trendingMovies,
     },
     revalidate: 1800,
   };

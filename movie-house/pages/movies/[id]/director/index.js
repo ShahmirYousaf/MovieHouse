@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import styles from '../../styles/MovieHouse.module.css';
-import { getAllMovies } from '@/helper/utils';
+import styles from '../../../../styles/MovieHouse.module.css';
+import { getAllDirectors, getAllMovies } from '@/helper/utils';
 import Link from 'next/link';
 
 const DirectorDetail = ({ director, movies }) => {
@@ -32,9 +32,10 @@ const DirectorDetail = ({ director, movies }) => {
 
 export async function getStaticProps({ params }) {
   const res = await getAllMovies();
-  const movie = res.movies.find(m => m.id === params.id);
-  const director = res.directors.find(d => d.id === movie.directorId);
-  const moviesDirected = res.movies.filter(m => m.directorId === director.id);
+  const directors = await getAllDirectors()
+  const movie = res.find(m => m.id === params.id);
+  const director = directors.find(d => d.id === movie.directorId);
+  const moviesDirected = res.filter(m => m.directorId === director.id);
 
   return {
     props: {

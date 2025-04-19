@@ -16,6 +16,19 @@
   gap: 20px;
 }
 
+.filterContainer {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.filterDropdown {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 .viewDetailsBtn {
   padding: 10px 20px;
   background-color: #0070f3;
@@ -102,12 +115,24 @@
   margin-bottom: 15px;
 }
 
-/* Navbar Styles */
 .navbar {
-  background-color: #333;
-  padding: 10px 0;
+  background-color: #0070f3;
+  padding: 15px 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* Logo Styling */
+.navbar .logo h1 {
+  color: #fff;
+  font-size: 24px;
+  margin-left: 30px;
+  display: inline-block;
+}
+
+/* Navbar List Styling */
 .navList {
   display: flex;
   justify-content: center;
@@ -116,15 +141,50 @@
   padding: 0;
 }
 
+/* Navbar Item Styling */
 .navItem {
   color: white;
   text-decoration: none;
-  margin: 0 15px;
+  margin: 0 20px;
   font-size: 18px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
 }
 
 .navItem:hover {
-  text-decoration: underline;
+  color: #000000;
+}
+
+/* Navbar Item Hover Effect */
+.navItem::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #0070f3;
+  bottom: -5px;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-out;
+}
+
+.navItem:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Making the Navbar More Responsive */
+@media (max-width: 768px) {
+  .navList {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navItem {
+    margin: 10px 0;
+  }
 }
 
 .errorPage {
@@ -157,5 +217,37 @@
 }
 
 .goHomeButton:hover {
+  background-color: #005bb5;
+}
+
+.genreList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.genreCard {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.genreCard h3 {
+  margin-bottom: 10px;
+}
+
+.viewMoviesButton {
+  padding: 10px 20px;
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.viewMoviesButton:hover {
   background-color: #005bb5;
 }
