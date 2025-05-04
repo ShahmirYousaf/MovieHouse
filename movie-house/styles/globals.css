@@ -17,13 +17,42 @@ body {
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-color: #ffffff;
+  color: #000000;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Dark Theme */
+body.dark {
+  background-color: #333;
+  color: #ffffff;
+}
+
+/* Additional styles */
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+/* Adjust text color, link colors, and other elements for dark mode */
+body.dark {
+  --background: #333;
+  --foreground: #ffffff;
+  background-color: #333;
+  color: white;
+}
+
+
+body.dark .movieCard {
+  background-color: #444;
+  color: white;
+  border: 1px solid #444;
+}
+
+
+body.dark .browseButton {
+  background-color: #005bb5;
+}
 * {
   box-sizing: border-box;
   padding: 0;

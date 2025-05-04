@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { getAllMovies, getAllGenres } from '@/helper/utils'; 
 import MovieCard from '../../components/MovieCard';
 import styles from '../../styles/MovieHouse.module.css';
 
@@ -51,8 +50,10 @@ const Movies = ({ movies, genres }) => {
 };
 
 export async function getStaticProps() {
-  const movies = await getAllMovies();
-  const genres = await getAllGenres();
+  const moviesRes = await fetch('http://localhost:3000/api/movies');
+  const movies = await moviesRes.json();
+  const genresRes = await fetch('http://localhost:3000/api/genres');
+  const genres = await genresRes.json();
 
   if (!movies || !genres) {
     return {

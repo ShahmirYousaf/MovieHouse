@@ -2,7 +2,6 @@
 import Head from 'next/head';
 import MovieCard from '../../../components/MovieCard';
 import styles from '../../../styles/MovieHouse.module.css';
-import { getAllGenres, getAllMovies } from '@/helper/utils'; // Helper functions to fetch data
 
 const GenreDetail = ({ genre, movies }) => {
   return (
@@ -24,10 +23,11 @@ const GenreDetail = ({ genre, movies }) => {
 
 // Server-Side Rendering (SSR) for Genre Detail Page
 export async function getServerSideProps({ params }) {
-  const genres = await getAllGenres(); // Fetch all genres
-  const movies = await getAllMovies(); // Fetch all movies
-  const genre = genres.find((g) => g.id === params.id); // Find the genre based on the ID
-  const filteredMovies = movies.filter((movie) => movie.genreId === genre.id); // Filter movies by genre ID
+  const genreRes = await fetch(`http://localhost:3000/api/genres/${params.id}`);
+  const genre = await genreRes.json();
+
+  const moviesRes = await fetch(`http://localhost:3000/api/genres/${params.id}/movies`);
+  const filteredMovies = await moviesRes.json();
 
   return {
     props: {

@@ -5,7 +5,7 @@ import styles from '../../styles/MovieHouse.module.css';
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 const DirectorsPage = () => {
-  const { data, error } = useSWR('/api/directors', fetcher);
+  const { data, error } = useSWR('http://localhost:3000/api/directors', fetcher);
 
   if (error) return <div>Failed to load</div>;
   if (!data) return <div>Loading...</div>;

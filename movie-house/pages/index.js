@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router';
-import { getAllMovies } from '@/helper/utils';
 import Head from 'next/head';
 import MovieCard from '../components/MovieCard';
 import styles from '../styles/MovieHouse.module.css';
@@ -26,8 +25,10 @@ const Home = ({ trendingMovies }) => {
 };
 
 export async function getStaticProps() {
-  const movies = await getAllMovies();
-  const trendingMovies = movies.filter(movie => movie.rating > 8) // Condition for being trending
+  const res = await fetch('http://localhost:3000/api/movies'); 
+  const movies = await res.json();
+
+  const trendingMovies = movies.filter(movie => movie.rating > 8) 
 
   if(!trendingMovies)
   {

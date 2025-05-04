@@ -1,27 +1,43 @@
-import fs from 'fs';
-import path from 'path';
+import { connectToDatabase } from '../lib/mongodb';
 
-// Helper function to read the JSON data
-const getData = () => {
-  const filePath = path.join(process.cwd(), 'data', 'data.json');
-  const data = fs.readFileSync(filePath, 'utf-8');
-  return JSON.parse(data);
+export const getAllMovies = async () => {
+  const { db } = await connectToDatabase();
+  const movies = await db.collection('movies').find({}).toArray();
+  return movies;
 };
 
-// Function to get all movies
-export const getAllMovies = () => {
-  const data = getData();
-  return data.movies;
+export const getAllGenres = async () => {
+  const { db } = await connectToDatabase();
+  const genres = await db.collection('genres').find({}).toArray();
+  return genres;
 };
 
-// Function to get all genres
-export const getAllGenres = () => {
-  const data = getData();
-  return data.genres;
+export const getAllDirectors = async () => {
+  const { db } = await connectToDatabase();
+  const directors = await db.collection('directors').find({}).toArray();
+  return directors;
 };
 
-// Function to get all directors
-export const getAllDirectors = () => {
-  const data = getData();
-  return data.directors;
+export const getMovieById = async (id) => {
+  const { db } = await connectToDatabase();
+  const movie = await db.collection('movies').findOne({ id });
+  return movie;
+};
+
+export const getMoviesByGenre = async (genreId) => {
+  const { db } = await connectToDatabase();
+  const movies = await db.collection('movies').find({ genreId }).toArray();
+  return movies;
+};
+
+export const getDirectorById = async (id) => {
+  const { db } = await connectToDatabase();
+  const director = await db.collection('directors').findOne({ id });
+  return director;
+};
+
+export const getMoviesByDirector = async (directorId) => {
+  const { db } = await connectToDatabase();
+  const movies = await db.collection('movies').find({ directorId }).toArray();
+  return movies;
 };

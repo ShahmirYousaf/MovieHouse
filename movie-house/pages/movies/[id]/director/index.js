@@ -1,8 +1,6 @@
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import styles from '../../../../styles/MovieHouse.module.css';
-import { getAllDirectors, getAllMovies } from '@/helper/utils';
-import Link from 'next/link';
 
 const DirectorDetail = ({ director, movies }) => {
   const router = useRouter();
@@ -31,11 +29,11 @@ const DirectorDetail = ({ director, movies }) => {
 };
 
 export async function getStaticProps({ params }) {
-  const res = await getAllMovies();
-  const directors = await getAllDirectors()
-  const movie = res.find(m => m.id === params.id);
-  const director = directors.find(d => d.id === movie.directorId);
-  const moviesDirected = res.filter(m => m.directorId === director.id);
+  const directorRes = await fetch(`http://localhost:3000/api/directors/${params.id}`);
+  const director = await directorRes.json();
+
+  const moviesRes = await fetch(`http://localhost:3000/api/genres/${director.genreId}/movies`);
+  const moviesDirected = await moviesRes.json();
 
   return {
     props: {
@@ -47,7 +45,8 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const movies = await getAllMovies();
+  const res = await fetch('api/movies');
+  const movies = await res.json();
   const paths = movies.map(movie => ({
     params: { id: movie.id },
   }));

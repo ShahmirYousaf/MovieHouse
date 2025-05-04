@@ -1,9 +1,7 @@
 import { useRouter } from 'next/router';
-import { getAllDirectors, getAllMovies } from '@/helper/utils';
 import Head from 'next/head';
 import MovieCard from '../../../components/MovieCard';
 import styles from '../../../styles/MovieHouse.module.css';
-import { notFound } from 'next/navigation';
 import Link from 'next/link';
 
 const MovieDetail = ({ movie, director }) => {
@@ -32,7 +30,8 @@ const MovieDetail = ({ movie, director }) => {
 };
 
 export async function getStaticPaths() {
-  const movies = await getAllMovies();
+  const res = await fetch('http://localhost:3000/api/movies');
+  const movies = await res.json();
   const paths = movies.map(movie => ({
     params: { id: movie.id },
   }));
@@ -41,10 +40,11 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const res = await getAllMovies();
-  const directors = await getAllDirectors()
-  const movie = res.find(m => m.id === params.id);
-  const director = directors.find(d => d.id === movie.directorId);
+  const movieRes = await fetch(`http://localhost:3000/api/movies/${params.id}`);
+  const movie = await movieRes.json();
+
+  const directorRes = await fetch(`http://localhost:3000/api/directors/${movie.directorId}`);
+  const director = await directorRes.json();
 
   return {
     props: {

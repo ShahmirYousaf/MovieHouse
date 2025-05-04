@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import styles from '../../styles/MovieHouse.module.css';
-import { getAllGenres } from '@/helper/utils'; // Helper function to fetch genres
 
 const GenresPage = ({ genres }) => {
   return (
@@ -28,7 +27,8 @@ const GenresPage = ({ genres }) => {
 
 
 export async function getServerSideProps() {
-  const genres = await getAllGenres(); 
+  const genreRes = await fetch(`http://localhost:3000/api/genres`);
+  const genres = await genreRes.json();
 
   return {
     props: {
