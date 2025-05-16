@@ -6,6 +6,12 @@ export const getAllMovies = async () => {
   return movies;
 };
 
+export const getGenrebyId = async (id) => {
+   const { db } = await connectToDatabase();
+   const genre = await db.collection('genres').findOne({id});
+   return genre;
+}
+
 export const getAllGenres = async () => {
   const { db } = await connectToDatabase();
   const genres = await db.collection('genres').find({}).toArray();
